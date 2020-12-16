@@ -22,9 +22,7 @@ function Login() {
         })
         //.then check for status 200 if true redirect to main using react router link
         .then((response) => {
-            console.log('the response from signin is', response)
             if (response.status === 200) {
-                console.log("we've reached the response status 200");
                 //redirect to Main using react route link
                 setIsLoggedIn(true);
             }

@@ -20,14 +20,13 @@ function App() {
         url: '/users/isLoggedIn',
     })
     .then(res => {
-        console.log('axios isloggedin resolved and the res is', res)
         if (res.status === 200) {
             if (res.data.isLoggedIn) {
                 setLoggedIn(true)
             }
         }
     })
-  }, [])
+  }, []) //runs when component mounts
 
   return (
       <Router>
