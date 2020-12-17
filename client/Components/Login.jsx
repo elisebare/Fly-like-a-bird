@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
 import { Input } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import { Center, Square, Circle } from "@chakra-ui/react";
+import { Stack, HStack, VStack, StackDivider } from "@chakra-ui/react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Flex, Spacer } from "@chakra-ui/react";
 
 function Login() {
     const [ email, setEmail ] = useState('');
@@ -39,25 +44,39 @@ function Login() {
     }
 
     return (
-        <div>
-            {/* is loggedIn === true --> redirect */}
-            {isLoggedIn === true ? 
+        <Box maxW="500px" mx="auto" marginTop="5%">
+
+        <VStack align="stretch" spacing={4} >
+
+                {isLoggedIn === true ? 
                 <Redirect to="/main" /> : 
-                <h1>Log in</h1>
-            }
+                <Center flex="4" size="lg"> Log in here
+                </Center>
+                }
+
+            {/* is loggedIn === true --> redirect */}
             <form onSubmit={handleSubmit}>
-                <label>Email:
-                    <Input type="text" value={email} onChange={(e) => { setEmail(e.target.value) }}></Input>
-                </label>
-                <label>Password:
-                    <Input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }}></Input>
-                </label>
-                <Input type="submit" value="Sign In">
-                </Input>
+                <VStack
+                    divider={<StackDivider borderColor="gray.200" />}
+                    spacing={4}
+                    align="stretch"
+                >
+                    <Input size="md" placeholder="Email" variant="border" type="text" value={email} onChange={(e) => { setEmail(e.target.value) }}/>
+                    <Input size="md" placeholder="Password" variant="border" type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                    <Input size="md"  variant="filled" type="submit" value="Sign In" />
+                </VStack>
+                
             </form>
-            <Link to="/signup">Sign Up</Link>
+            <Center>
+
+                <Button variant="solid">
+                    <Link to="/signup">Create An Account Instead</Link>
+                </Button>
+            </Center>
             <p>{errorMsg}</p>
-        </div>
+        </VStack>
+        </Box>
+       
     )
 }
 
