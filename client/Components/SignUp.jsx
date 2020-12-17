@@ -56,6 +56,7 @@ function SignUp() {
 
                 </Input>
             </form>
+            <Link to="/signup">Go back to Login</Link>
             <p>{errorMsg}</p>
         </div>
     )
