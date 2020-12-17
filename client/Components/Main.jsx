@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Input } from "@chakra-ui/react";
 import { Select } from "@chakra-ui/react";
+import { SimpleGrid } from '@chakra-ui/react';
 import CityCard from './CityCard.jsx';
 
 
@@ -142,9 +143,10 @@ function Main() {
       </form>
       {/* if api data has a length > 0, display recs component */}
       <div className="api-data">
-        <div>{cityArray}</div>
-        <button>Show Me More!</button>
-        </div>
+        <SimpleGrid minChildWidth="200px" spacing="40px" margin="20px" justifyItems="center">
+          {cityArray}
+          </SimpleGrid>
+      </div>
     </div>
   )
 }
