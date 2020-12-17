@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState  } from 'react';
 import axios from 'axios';
-import { Input } from "@chakra-ui/react";
-import { Select } from "@chakra-ui/react";
+import { Select, useRadio, useRadioGroup } from "@chakra-ui/react";
+import RadioCard from '../DisplayComponents/MonthRadioCard.jsx';
+import { Redirect } from 'react-router-dom';
 
+import { Box, Input } from "@chakra-ui/react";
+import { Center, Square, Circle } from "@chakra-ui/react";
+import { Stack, HStack, VStack, StackDivider } from "@chakra-ui/react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Flex, Grid, Spacer } from "@chakra-ui/react";
+import GetUserMonth from '../DisplayComponents/GetUserMonth.jsx';
+import GetContinent from '../DisplayComponents/GetContinent.jsx'
 
 function Main() {
   const [month, setMonth] = useState('');
@@ -14,13 +22,21 @@ function Main() {
   const [isLoggedIn, setIsLoggedIn ] = useState(true);
 
 
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const monthOptions = months.map((mon, i) => {
-    return (<option value={mon} key={`month${i}`}>{mon}</option>)
-  })
+  // const {getRootProps, getRadioProps} = useRadioGroup({
+  //   name: "month",
+  //   defaultValue: month,
+  //   onChange: setMonth,
+  // })
 
-  const continents = ["Africa", "Asia", "Europe", "North America", "Oceania", "South America"]
-  const continentOptions = continents.map((continent, i) => (<option key={`continents${i}`} value={continent}>{continent}</option>))
+  // const group = getRootProps()
+  // const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  // const monthOptions = months.map((value, i) => {
+  //   const radio = getRadioProps({ value })
+  //   return (<RadioCard key={value} {...radio}>{value}</RadioCard>)
+  // })
+
+  // const continents = ["Africa", "Asia", "Europe", "North America", "Oceania", "South America"]
+  // const continentOptions = continents.map((continent, i) => (<option key={`continents${i}`} value={continent}>{continent}</option>))
 
   const handleSubmit = (e) => {
     console.log('state that we will send to /recs is ', month, temp, continent, country)
@@ -68,22 +84,37 @@ function Main() {
   }
 
   return(
-    <div>
+    <Box maxW="500px" mx="auto" marginTop="5%">
       {isLoggedIn === false ? <Redirect to="/" /> : <></>}
       <h2>Give us some info so we can share some recs</h2>
       <button onClick={handleLogout}>Logout</button>
       <form onSubmit={handleSubmit}>
-        <Select key="selectmonth" name="month" placeholder="What month are you travelling" isRequired onChange={e => setMonth(e.target.value)}>
+      <VStack
+        divider={<StackDivider borderColor="gray.200" />}
+        spacing={4}
+        align="stretch"
+      >
+        {/* <Select key="selectmonth" name="month" placeholder="What month are you travelling" isRequired onChange={e => setMonth(e.target.value)}>
           {monthOptions}
-        </Select>
-        <Select key="selectcont" name="continent" placeholder="Where are you going?" onChange={
+        </Select> */}
+        {/* <Grid 
+          templateColumns="repeat(6, 1fr)" 
+          gap={2} 
+          templateRows ="repeat(2, 1fr)"
+          {...group}>
+          {monthOptions}
+        </Grid> */}
+        
+        <GetUserMonth setMonth={setMonth} month={month}/>
+        <GetContinent setContinent={setContinent} continent = {continent}/>
+        {/* <Select key="selectcont" name="continent" placeholder="Where are you going?" onChange={
           e => {
             getCountries(e.target.value);
             setContinent(e.target.value);
           }
         }>
           {continentOptions}
-        </Select>
+        </Select> */}
         {/* if countries array has values display select for country */}
         
         <Select placeholder="Is there a country you're most interested in visiting?" onChange={e => setCountry(e.target.value)} >
@@ -98,10 +129,11 @@ function Main() {
           <option key={'temp5'} value="70-80">Hot</option>
           <option key={'temp6'} value="90-120">Oppressive</option>
         </Select>
-        <Input type="submit" value="Send me my recs!" />
+        <Input type="submit" value="Send me my recs!" variant="filled" />
+        </VStack>
       </form>
       {/* if api data has a length > 0, display recs component */}
-    </div>
+    </Box>
   )
 }
 

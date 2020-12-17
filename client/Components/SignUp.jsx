@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Input } from "@chakra-ui/react";
 import { Link, Redirect } from 'react-router-dom';
-// import inputs like in login page
+import { Input } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
+import { Center, Square, Circle } from "@chakra-ui/react";
+import { Stack, HStack, VStack, StackDivider } from "@chakra-ui/react";
+import { Button, ButtonGroup } from "@chakra-ui/react";
+import { Flex, Spacer } from "@chakra-ui/react";
 
 function SignUp() {
     const [ email, setEmail ] = useState('');
@@ -39,25 +43,39 @@ function SignUp() {
     }
 
     return (
-        <div>
-            {/* is loggedIn === true --> redirect */}
-            {isLoggedIn === true ? 
-                <Redirect to="/main" /> : 
-                <h1>Create account</h1>
-            }
-            <form onSubmit={handleSubmit}>
-                <label>Email:
-                    <Input type="text" value={email} onChange={(e) => { setEmail(e.target.value) }}></Input>
-                </label>
-                <label>Password:
-                    <Input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }}></Input>
-                </label>
-                <Input type="submit" value="Sign Up">
+        <Box maxW="500px" mx="auto" marginTop="5%">
 
-                </Input>
+        <VStack align="stretch" spacing={4} >
+
+                {isLoggedIn === true ? 
+                <Redirect to="/main" /> : 
+                <Center flex="4" size="lg"> Create an Account
+                </Center>
+                }
+
+            {/* is loggedIn === true --> redirect */}
+            <form onSubmit={handleSubmit}>
+                <VStack
+                    divider={<StackDivider borderColor="gray.200" />}
+                    spacing={4}
+                    align="stretch"
+                >
+                    <Input size="md" placeholder="Email" variant="border" type="text" value={email} onChange={(e) => { setEmail(e.target.value) }}/>
+                    <Input size="md" placeholder="Password" variant="border" type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} />
+                    <Input size="md"  variant="filled" type="submit" value="Create Account" />
+                </VStack>
+                
             </form>
+            <Center>
+
+                <Button variant="ghost">
+                    <Link to="/">Go Back to Login</Link>
+                </Button>
+            </Center>
             <p>{errorMsg}</p>
-        </div>
+        </VStack>
+        </Box>
+       
     )
 }
 

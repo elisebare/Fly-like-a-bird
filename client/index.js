@@ -21,6 +21,6 @@ const theme = extendTheme({ colors })
 
 // render app.jsx app component
 ReactDom.render(<ChakraProvider theme={theme}>
-                  <App />
+                  <App/>
                 </ChakraProvider>, 
                 document.getElementById("contents"));

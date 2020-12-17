@@ -69,7 +69,7 @@ function Login() {
             </form>
             <Center>
 
-                <Button variant="solid">
+                <Button variant="ghost">
                     <Link to="/signup">Create An Account Instead</Link>
                 </Button>
             </Center>
