@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
-import { Input } from "@chakra-ui/react";
-import { Box } from "@chakra-ui/react";
-import { Center, Square, Circle } from "@chakra-ui/react";
-import { Stack, HStack, VStack, StackDivider } from "@chakra-ui/react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { Flex, Spacer } from "@chakra-ui/react";
+import '../styles/login.scss'
+// import inputs like in login page
 
 function SignUp() {
     const [ email, setEmail ] = useState('');
@@ -43,15 +39,20 @@ function SignUp() {
     }
 
     return (
-        <Box maxW="500px" mx="auto" marginTop="5%">
-
-        <VStack align="stretch" spacing={4} >
-
-                {isLoggedIn === true ? 
+        <div className='signUp'>
+            {/* is loggedIn === true --> redirect */}
+            {isLoggedIn === true ? 
                 <Redirect to="/main" /> : 
-                <Center flex="4" size="lg"> Create an Account
-                </Center>
-                }
+                <h1>Create account</h1>
+            }
+            <form onSubmit={handleSubmit}>
+                <label className='label email'>Email:
+                    <Input className='input' type="text" value={email} onChange={(e) => { setEmail(e.target.value) }}></Input>
+                </label>
+                <label className='label'>Password:
+                    <Input  className='input' type="password" value={password} onChange={(e) => { setPassword(e.target.value) }}></Input>
+                </label>
+                <Input className='submit' type="submit" value="Sign Up">
 
             {/* is loggedIn === true --> redirect */}
             <form onSubmit={handleSubmit}>
@@ -66,12 +67,7 @@ function SignUp() {
                 </VStack>
                 
             </form>
-            <Center>
-
-                <Button variant="ghost">
-                    <Link to="/">Go Back to Login</Link>
-                </Button>
-            </Center>
+            <Link to="/" className='loginLink'>Login</Link>
             <p>{errorMsg}</p>
         </VStack>
         </Box>
