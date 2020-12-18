@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, Redirect } from 'react-router-dom';
-import { Input } from "@chakra-ui/react";
+import { Input, Center } from "@chakra-ui/react";
 import '../styles/login.scss'
 
 function Login() {
@@ -40,12 +40,15 @@ function Login() {
     }
 
     return (
+        <>
         <div className='login'>
             {/* is loggedIn === true --> redirect */}
             {isLoggedIn === true ? 
                 <Redirect to="/main" /> : 
                 <h1>Log in</h1>
             }
+
+            {/* is loggedIn === true --> redirect */}
             <form onSubmit={handleSubmit}>
                 <label className='label email'>Email:
                     <Input className='input' type="text" value={email} onChange={(e) => { setEmail(e.target.value) }}></Input>
@@ -57,8 +60,10 @@ function Login() {
                 </Input>
             </form>
             <Link to="/signup" className='signUpLink'>Sign Up</Link>
-            <p>{errorMsg}</p>
         </div>
+        <p>{errorMsg}</p>
+        </>
+       
     )
 }
 

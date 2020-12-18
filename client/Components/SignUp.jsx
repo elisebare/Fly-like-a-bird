@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Input } from "@chakra-ui/react";
 import { Link, Redirect } from 'react-router-dom';
+import { Input } from "@chakra-ui/react";
 import '../styles/login.scss'
 // import inputs like in login page
 
@@ -53,13 +53,12 @@ function SignUp() {
                 <label className='label'>Password:
                     <Input  className='input' type="password" value={password} onChange={(e) => { setPassword(e.target.value) }}></Input>
                 </label>
-                <Input className='submit' type="submit" value="Sign Up">
-
-                </Input>
+                <Input className='submit' type="submit" value="Sign Up" />
             </form>
             <Link to="/" className='loginLink'>Login</Link>
             <p>{errorMsg}</p>
         </div>
+       
     )
 }
 
