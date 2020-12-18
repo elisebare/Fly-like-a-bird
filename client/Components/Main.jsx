@@ -1,4 +1,4 @@
-import React, { useState  } from 'react';
+import React, { useEffect, useState  } from 'react';
 import axios from 'axios';
 import { Select, useRadio, useRadioGroup } from "@chakra-ui/react";
 import RadioCard from '../DisplayComponents/MonthRadioCard.jsx';
@@ -11,6 +11,7 @@ import { Button, ButtonGroup } from "@chakra-ui/react";
 import { Flex, Grid, Spacer } from "@chakra-ui/react";
 import GetUserMonth from '../DisplayComponents/GetUserMonth.jsx';
 import GetContinent from '../DisplayComponents/GetContinent.jsx'
+import CityCard from './CityCard.jsx'
 
 function Main() {
   const [month, setMonth] = useState('');
@@ -53,7 +54,13 @@ function Main() {
         setApiData(res.data);
       }
     })
-  }
+  };
+
+  useEffect(()=>{
+    console.log('hit useEffect for continent')
+    getCountries(continent);
+    
+  }, [continent])
 
   // functionality that loops through data and creates cards array
   const displayData = (arr) => {
@@ -145,7 +152,7 @@ function Main() {
         </Grid> */}
         
         <GetUserMonth setMonth={setMonth} month={month}/>
-        <GetContinent setContinent={setContinent} continent = {continent}/>
+        <GetContinent setContinent={setContinent} continent={continent}/>
         {/* <Select key="selectcont" name="continent" placeholder="Where are you going?" onChange={
           e => {
             getCountries(e.target.value);
@@ -176,7 +183,7 @@ function Main() {
         <div>{cityArray}</div>
         <button>Show Me More!</button>
         </div>
-    </div>
+    </Box>
   )
 }
 

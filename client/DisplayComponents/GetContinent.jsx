@@ -3,7 +3,8 @@ import { useRadio, useRadioGroup, Grid } from "@chakra-ui/react";
 import ContinentRadio from './ContinentRadio.jsx';
 
 
-function GetUserMonth ( props ) {
+function GetContinent ( props ) {
+  console.log('get user month props is', props)
   const {getRootProps, getRadioProps} = useRadioGroup({
     name: "continent",
     defaultValue: props.continent,
@@ -20,7 +21,7 @@ function GetUserMonth ( props ) {
 
   return (
     <Grid 
-      templateColumns="repeat(6, 1fr)" 
+      templateColumns="repeat(3, 1fr)" 
       gap={2} 
       templateRows ="repeat(2, 1fr)"
       {...group}>
@@ -29,4 +30,4 @@ function GetUserMonth ( props ) {
   )
 }
 
-export default GetUserMonth;
+export default GetContinent;
