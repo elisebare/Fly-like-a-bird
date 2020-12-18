@@ -3,10 +3,7 @@ import axios from 'axios';
 import { Select, useRadio, useRadioGroup } from "@chakra-ui/react";
 import RadioCard from '../DisplayComponents/MonthRadioCard.jsx';
 import { Redirect } from 'react-router-dom';
-import { Input } from "@chakra-ui/react";
-import { Select } from "@chakra-ui/react";
 import { SimpleGrid } from '@chakra-ui/react';
-import CityCard from './CityCard.jsx';
 
 import { Box, Input } from "@chakra-ui/react";
 import { Center, Square, Circle } from "@chakra-ui/react";
