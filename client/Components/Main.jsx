@@ -3,6 +3,10 @@ import axios from 'axios';
 import { Select, useRadio, useRadioGroup } from "@chakra-ui/react";
 import RadioCard from '../DisplayComponents/MonthRadioCard.jsx';
 import { Redirect } from 'react-router-dom';
+import { Input } from "@chakra-ui/react";
+import { Select } from "@chakra-ui/react";
+import { SimpleGrid } from '@chakra-ui/react';
+import CityCard from './CityCard.jsx';
 
 import { Box, Input } from "@chakra-ui/react";
 import { Center, Square, Circle } from "@chakra-ui/react";
@@ -180,9 +184,10 @@ function Main() {
       </form>
       {/* if api data has a length > 0, display recs component */}
       <div className="api-data">
-        <div>{cityArray}</div>
-        <button>Show Me More!</button>
-        </div>
+        <SimpleGrid minChildWidth="200px" spacing="40px" margin="20px" justifyItems="center">
+          {cityArray}
+          </SimpleGrid>
+      </div>
     </Box>
   )
 }
