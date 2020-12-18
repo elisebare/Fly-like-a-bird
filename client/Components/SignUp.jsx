@@ -40,6 +40,7 @@ function SignUp() {
     }
 
     return (
+        <>
         <div className='signUp'>
             {/* is loggedIn === true --> redirect */}
             {isLoggedIn === true ? 
@@ -56,9 +57,9 @@ function SignUp() {
                 <Input className='submit' type="submit" value="Sign Up" />
             </form>
             <Link to="/" className='loginLink'>Login</Link>
-            <p>{errorMsg}</p>
         </div>
-       
+        <p className='error'>{errorMsg}</p>
+        </>
     )
 }
 

@@ -24,21 +24,7 @@ function Main() {
   const [isLoggedIn, setIsLoggedIn ] = useState(true);
 
 
-  // const {getRootProps, getRadioProps} = useRadioGroup({
-  //   name: "month",
-  //   defaultValue: month,
-  //   onChange: setMonth,
-  // })
 
-  // const group = getRootProps()
-  // const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  // const monthOptions = months.map((value, i) => {
-  //   const radio = getRadioProps({ value })
-  //   return (<RadioCard key={value} {...radio}>{value}</RadioCard>)
-  // })
-
-  // const continents = ["Africa", "Asia", "Europe", "North America", "Oceania", "South America"]
-  // const continentOptions = continents.map((continent, i) => (<option key={`continents${i}`} value={continent}>{continent}</option>))
 
   const handleSubmit = (e) => {
     console.log('state that we will send to /recs is ', month, temp, continent, country)
@@ -77,29 +63,7 @@ function Main() {
   }
 
   const cityArray = apiData ? displayData(apiData) : null;
-  // const subArraysFunc = (arr) => {
-  //   let subArr = [];
-  //   const newArr = [];
-  //   // check if arr is not null
-  //   if (arr) {
-  //     // loop through input arr
-  //     arr.forEach((city, i) => {
-  //       // check to see if subArr has length of 5
-  //       if (arr[i + 1] === undefined) {
-  //         newArr.push(subArr)
-  //       }
-  //       if (subArr.length === 5) {
-  //         // if so, push subArr into newArr
-  //         newArr.push(subArr);
-  //         // reassign subArr to empty array
-  //         subArr = [];
-  //       }
-  //       subArr.push(city);
-  //     })
-  //   } 
-  //   return newArr;
-  // }
-  // const subArrays = subArraysFunc(cityArray);
+ 
   
 
   const getCountries = (val) => {
@@ -141,28 +105,11 @@ function Main() {
         spacing={4}
         align="stretch"
       >
-        {/* <Select key="selectmonth" name="month" placeholder="What month are you travelling" isRequired onChange={e => setMonth(e.target.value)}>
-          {monthOptions}
-        </Select> */}
-        {/* <Grid 
-          templateColumns="repeat(6, 1fr)" 
-          gap={2} 
-          templateRows ="repeat(2, 1fr)"
-          {...group}>
-          {monthOptions}
-        </Grid> */}
+       
         
         <GetUserMonth setMonth={setMonth} month={month}/>
         <GetContinent setContinent={setContinent} continent={continent}/>
-        {/* <Select key="selectcont" name="continent" placeholder="Where are you going?" onChange={
-          e => {
-            getCountries(e.target.value);
-            setContinent(e.target.value);
-          }
-        }>
-          {continentOptions}
-        </Select> */}
-        {/* if countries array has values display select for country */}
+        
         
         <Select placeholder="Is there a country you're most interested in visiting?" onChange={e => setCountry(e.target.value)} >
           {countries ? countries: <></>}

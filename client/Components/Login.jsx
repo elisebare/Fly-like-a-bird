@@ -61,7 +61,7 @@ function Login() {
             </form>
             <Link to="/signup" className='signUpLink'>Sign Up</Link>
         </div>
-        <p>{errorMsg}</p>
+        <p className='error'>{errorMsg}</p>
         </>
        
     )
