@@ -1,18 +1,13 @@
 import React, { useEffect, useState  } from 'react';
 import axios from 'axios';
-import { Select, useRadio, useRadioGroup } from "@chakra-ui/react";
-import RadioCard from '../DisplayComponents/MonthRadioCard.jsx';
-import { Redirect } from 'react-router-dom';
-import { SimpleGrid } from '@chakra-ui/react';
 
-import { Box, Input } from "@chakra-ui/react";
-import { Center, Square, Circle } from "@chakra-ui/react";
-import { Stack, HStack, VStack, StackDivider } from "@chakra-ui/react";
-import { Button, ButtonGroup } from "@chakra-ui/react";
-import { Flex, Grid, Spacer } from "@chakra-ui/react";
+
+import { Redirect } from 'react-router-dom';
+import { SimpleGrid, Box, Input, VStack, StackDivider, Select, Center, Button } from '@chakra-ui/react';
 import GetUserMonth from '../DisplayComponents/GetUserMonth.jsx';
-import GetContinent from '../DisplayComponents/GetContinent.jsx'
-import CityCard from './CityCard.jsx'
+import GetContinent from '../DisplayComponents/GetContinent.jsx';
+import GetTemp from '../DisplayComponents/GetTemp.jsx';
+import CityCard from './CityCard.jsx';
 
 function Main() {
   const [month, setMonth] = useState('');
@@ -22,9 +17,6 @@ function Main() {
   const [apiData, setApiData] = useState('');
   const [countries, setCountries ] = useState('');
   const [isLoggedIn, setIsLoggedIn ] = useState(true);
-
-
-
 
   const handleSubmit = (e) => {
     console.log('state that we will send to /recs is ', month, temp, continent, country)
@@ -97,8 +89,8 @@ function Main() {
   return(
     <Box maxW="500px" mx="auto" marginTop="5%">
       {isLoggedIn === false ? <Redirect to="/" /> : <></>}
-      <h2>Give us some info so we can share some recs</h2>
-      <button onClick={handleLogout}>Logout</button>
+      
+      <Button onClick={handleLogout}>Logout</Button>
       <form onSubmit={handleSubmit}>
       <VStack
         divider={<StackDivider borderColor="gray.200" />}
@@ -106,23 +98,19 @@ function Main() {
         align="stretch"
       >
        
-        
+       
+        <Center size="lg" color="teal.600">What month are you travelling?</Center>
+     
         <GetUserMonth setMonth={setMonth} month={month}/>
+        <Center size="lg" color="teal.600">Where do you want to go?</Center>
         <GetContinent setContinent={setContinent} continent={continent}/>
         
         
-        <Select placeholder="Is there a country you're most interested in visiting?" onChange={e => setCountry(e.target.value)} >
+        <Select placeholder="Is there a country you're most interested in visiting?" color="teal.600" onChange={e => setCountry(e.target.value)} >
           {countries ? countries: <></>}
         </Select>
-        <Select key="selecttemp" name="temp" placeholder = "What's your ideal temperature?" onChange={e => setTemp(e.target.value)}>
-          <option key={'temp0'} value="0-30">Freezing!</option>
-          <option key={'temp1'} value="30-50">Cold</option>
-          <option key={'temp2'} value="50-60">Chillly</option>
-          <option key={'temp3'} value="60-70">Mild</option>
-          <option key={'temp4'} value="70-80">Warm</option>
-          <option key={'temp5'} value="80-90">Hot</option>
-          <option key={'temp6'} value="90-120">Oppressive</option>
-        </Select>
+        <Center size="lg" color="teal.600">What is your ideal temperature?</Center>
+        <GetTemp temp={temp} setTemp={setTemp}/>
         <Input type="submit" value="Send me my recs!" variant="filled" />
         </VStack>
       </form>

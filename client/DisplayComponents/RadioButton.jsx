@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRadio, Box } from "@chakra-ui/react";
 
-function MonthRadioCard (props) {
+function RadioButton (props) {
   const { getInputProps, getCheckboxProps } = useRadio(props);
 
   const input = getInputProps();
@@ -36,4 +36,4 @@ function MonthRadioCard (props) {
   )
 }
 
-export default MonthRadioCard;
+export default RadioButton;

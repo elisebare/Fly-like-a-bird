@@ -1,6 +1,6 @@
 import React from 'react';
-import { useRadio, useRadioGroup, Grid } from "@chakra-ui/react";
-import MonthRadioCard from './MonthRadioCard.jsx';
+import { useRadioGroup, Grid } from "@chakra-ui/react";
+import RadioButton from './RadioButton.jsx';
 
 
 function GetUserMonth ( props ) {
@@ -14,7 +14,7 @@ function GetUserMonth ( props ) {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const monthOptions = months.map((value, i) => {
     const radio = getRadioProps({ value })
-    return (<MonthRadioCard key={value} {...radio}>{value}</MonthRadioCard>)
+    return (<RadioButton key={value} {...radio}>{value}</RadioButton>)
   })
 
   return (

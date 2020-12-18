@@ -1,10 +1,10 @@
 import React from 'react';
-import { useRadio, useRadioGroup, Grid } from "@chakra-ui/react";
-import ContinentRadio from './ContinentRadio.jsx';
+import { useRadioGroup, Grid } from "@chakra-ui/react";
+import RadioButton from './RadioButton.jsx';
 
 
 function GetContinent ( props ) {
-  console.log('get user month props is', props)
+
   const {getRootProps, getRadioProps} = useRadioGroup({
     name: "continent",
     defaultValue: props.continent,
@@ -16,7 +16,7 @@ function GetContinent ( props ) {
  
   const continentOptions = continents.map((value, i) => {
     const radio = getRadioProps({ value })
-    return (<ContinentRadio key={value} {...radio}>{value}</ContinentRadio>)
+    return (<RadioButton key={value} {...radio}>{value}</RadioButton>)
   })
 
   return (
